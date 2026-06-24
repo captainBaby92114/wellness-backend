@@ -55,5 +55,6 @@ describe('POST /api/upload', () => {
       deviceModel: 'Test Device',
     });
     expect(fs.existsSync(response.body.savedPath)).toBe(true);
+    expect(response.body).toHaveProperty('metrics');
   });
 });

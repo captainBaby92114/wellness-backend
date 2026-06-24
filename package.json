@@ -10,15 +10,20 @@
   },
   "jest": {
     "testEnvironment": "node",
-    "setupFiles": ["<rootDir>/__tests__/setup.js"],
-    "testMatch": ["<rootDir>/__tests__/**/*.test.js"]
+    "setupFiles": [
+      "<rootDir>/__tests__/setup.js"
+    ],
+    "testMatch": [
+      "<rootDir>/__tests__/**/*.test.js"
+    ]
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.750.0",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
-    "multer": "^1.4.5-lts.1"
+    "multer": "^1.4.5-lts.1",
+    "node-fetch": "^2.7.0"
   },
   "devDependencies": {
     "jest": "^29.7.0",
