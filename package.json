@@ -2,10 +2,16 @@
   "name": "health-app-backend",
   "version": "1.0.0",
   "description": "Express backend for health scan video uploads",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js"
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
+    "test": "jest"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "setupFiles": ["<rootDir>/__tests__/setup.js"],
+    "testMatch": ["<rootDir>/__tests__/**/*.test.js"]
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.750.0",
@@ -15,6 +21,8 @@
     "multer": "^1.4.5-lts.1"
   },
   "devDependencies": {
-    "nodemon": "^3.1.9"
+    "jest": "^29.7.0",
+    "nodemon": "^3.1.9",
+    "supertest": "^7.0.0"
   }
 }
