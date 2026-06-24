@@ -1,0 +1,36 @@
+const logger = require('../../logging');
+const {processUpload} = require('../../services/uploadService');
+const {deriveMimeType} = require('../../utils/mime');
+
+function buildMetadata(body) {
+  return {
+    userId: body.userId || '',
+    consentTimestamp: body.consentTimestamp || '',
+    consentVersion: body.consentVersion || '',
+    captureTimestamp: body.captureTimestamp || '',
+    deviceModel: body.deviceModel || '',
+  };
+}
+
+async function uploadVideo(req, res) {
+  if (!req.file) {
+    return res.status(400).json({error: 'No video file provided'});
+  }
+
+  const metadata = buildMetadata(req.body);
+  const mimeType = deriveMimeType(req.file.originalname);
+
+  try {
+    const result = await processUpload({
+      file: req.file,
+      metadata,
+      mimeType,
+    });
+    return res.json(result);
+  } catch (err) {
+    logger.error('Upload error:', {message: err.message});
+    return res.status(500).json({error: err.message});
+  }
+}
+
+module.exports = {uploadVideo};

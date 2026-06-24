@@ -1,8 +1,9 @@
 const path = require('path');
+const {DEFAULT_PORT} = require('../constants');
 
 function getConfig() {
   return {
-    port: Number(process.env.PORT) || 3001,
+    port: Number(process.env.PORT) || DEFAULT_PORT,
     useS3: process.env.USE_S3 === 'true',
     aws: {
       region: process.env.AWS_REGION,
@@ -14,4 +15,4 @@ function getConfig() {
   };
 }
 
-module.exports = { getConfig };
+module.exports = {getConfig};

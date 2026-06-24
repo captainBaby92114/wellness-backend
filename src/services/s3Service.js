@@ -1,5 +1,5 @@
-const { S3Client } = require('@aws-sdk/client-s3');
-const { getConfig } = require('../config');
+const {S3Client} = require('@aws-sdk/client-s3');
+const {getConfig} = require('../config');
 
 function createS3Client() {
   const config = getConfig();
@@ -17,4 +17,4 @@ function createS3Client() {
   });
 }
 
-module.exports = { createS3Client };
+module.exports = {createS3Client};

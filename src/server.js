@@ -1,9 +1,8 @@
-const path = require('path');
+const {loadEnv} = require('./startup/loadEnv');
+const {getConfig} = require('./config');
+const {createApp} = require('./app');
 
-require('dotenv').config({ path: path.join(__dirname, '..', '.env') });
-
-const { getConfig } = require('./config');
-const { createApp } = require('./app');
+loadEnv();
 
 const config = getConfig();
 const app = createApp();
