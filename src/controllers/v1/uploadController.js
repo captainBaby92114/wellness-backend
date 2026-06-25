@@ -19,12 +19,23 @@ async function uploadVideo(req, res) {
 
   const metadata = buildMetadata(req.body);
   const mimeType = deriveMimeType(req.file.originalname);
+  const source = req.body.source || 'picker';
+  let sdkMetrics = null;
+  if (req.body.sdkMetrics) {
+    try {
+      sdkMetrics = JSON.parse(req.body.sdkMetrics);
+    } catch (parseErr) {
+      logger.error('Invalid sdkMetrics payload:', {message: parseErr.message});
+    }
+  }
 
   try {
     const result = await processUpload({
       file: req.file,
       metadata,
       mimeType,
+      source,
+      sdkMetrics,
     });
     return res.json(result);
   } catch (err) {
